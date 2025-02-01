@@ -18,133 +18,178 @@
         .font-poppins {
             font-family: 'Poppins', sans-serif;
         }
+
+        @keyframes glowingBorder {
+
+            0%,
+            100% {
+                border-color: #ff0000;
+                box-shadow: 0 0 10px #ff0000, 0 0 20px #ff4500;
+            }
+
+            50% {
+                border-color: #00ff00;
+                box-shadow: 0 0 10px #00ff00, 0 0 20px #32cd32;
+            }
+        }
+
+        .animate-glowingBorder {
+            animation: glowingBorder 2s infinite alternate ease-in-out;
+        }
     </style>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: {
-                        clifford: '#da373d',
-
+                    animation: {
+                        glow: 'glowing-border 4s linear infinite',
+                        hoverGlow: 'hover-glow 1.5s infinite alternate',
+                        textGlow: 'text-glow 2s ease-in-out infinite',
                     },
-                },
-            },
+                    keyframes: {
+                        'glowing-border': {
+                            '0%': { '--angle': '0deg' },
+                            '100%': { '--angle': '360deg' },
+                        },
+                        'hover-glow': {
+                            '0%': { opacity: '0.6' },
+                            '100%': { opacity: '1' },
+                        },
+                        'text-glow': {
+                            '0%, 100%': {
+                                color: '#ff0000',
+                                textShadow: '0 0 10px #ff0000, 0 0 20px #ff4500, 0 0 30px #ff0000'
+                            },
+                            '50%': {
+                                color: '#00ff00',
+                                textShadow: '0 0 10px #00ff00, 0 0 20px #32cd32, 0 0 30px #00ff00'
+                            }
+                        }
+
+                    }
+                }
+            }
         }
     </script>
-    
+
 </head>
 
 <body>
-    <div>
-        <nav class="mx-auto lg:w-2/3 lg:mt-5">
-            <div class="px-4 py-2 bg-white rounded-lg shadow-lg navbar">
-
-                <div class="navbar-start">
-                    <!-- Mobile Dropdown -->
-                    <div class="dropdown">
-                        <label tabindex="0" class="btn btn-ghost lg:hidden">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M4 6h16M4 12h16M4 18h16" />
-                            </svg>
-                        </label>
-                        <!-- Dropdown Menu -->
-                        <ul tabindex="0"
-                            class="absolute left-0 w-48 p-4 mt-3 space-y-2 bg-white rounded-lg shadow-lg menu menu-sm dropdown-content">
+    <!-- bg-gradient-to-r from-blue-500 -->
+    <div class="mt-0 bg-gradient-to-t from-[#EFEBE3]">
+        <div>
+            <nav class="fixed top-0 left-0 right-0 mx-auto lg:w-2/3 ">
+                <div class="px-4 py-2 bg-white rounded-lg shadow-lg navbar">
+    
+                    <div class="navbar-start">
+                        <!-- Mobile Dropdown -->
+                        <div class="dropdown">
+                            <label tabindex="0" class="btn btn-ghost lg:hidden">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M4 6h16M4 12h16M4 18h16" />
+                                </svg>
+                            </label>
+                            <!-- Dropdown Menu -->
+                            <ul tabindex="0"
+                                class="absolute left-0 w-48 p-4 mt-3 space-y-2 bg-white rounded-lg shadow-lg menu menu-sm dropdown-content">
+                                <li><a class="text-gray-700 hover:text-green-600">Product</a></li>
+                                <li><a class="text-gray-700 hover:text-green-600">Services</a></li>
+                                <li><a class="text-gray-700 hover:text-green-600">Contact Us</a></li>
+                                <li class="flex justify-center mt-2 space-x-3">
+                                    <button class="btn btn-ghost btn-circle">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                        </svg>
+                                    </button>
+                                    <button class="items-start justify-start btn btn-ghost btn-circle">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24"
+                                            fill="currentColor">
+                                            <path
+                                                d="M2.25 3a.75.75 0 000 1.5h2.071l3.297 10.16A2.25 2.25 0 009.75 16.5h8.496a2.25 2.25 0 002.147-1.592L21.75 7.5h-15.97l-.607-1.875A.75.75 0 004.5 5.25H2.25zM9.75 18a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm7.5 0a1.5 1.5 0 100 3 1.5 1.5 0 000-3z" />
+                                        </svg>
+                                    </button>
+                                </li>
+                                <li><button class="w-full mt-2 btn btn-outline">Login</button></li>
+                                <li><button class="w-full mt-2 text-white btn btn-success">Register</button></li>
+                            </ul>
+                        </div>
+    
+                        <!-- Logo -->
+                        <div class="hidden sm:justify-end sm:flex">
+                            <img src="c2-assets/logo-header.png" alt="Logo" class="h-8">
+                        </div>
+    
+                    </div>
+                    <div class="hidden navbar-center lg:flex">
+                        <ul class="space-x-4 menu menu-horizontal">
                             <li><a class="text-gray-700 hover:text-green-600">Product</a></li>
                             <li><a class="text-gray-700 hover:text-green-600">Services</a></li>
                             <li><a class="text-gray-700 hover:text-green-600">Contact Us</a></li>
-                            <li class="flex justify-center mt-2 space-x-3">
-                                <button class="btn btn-ghost btn-circle">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                                    </svg>
-                                </button>
-                                <button class="items-start justify-start btn btn-ghost btn-circle">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24"
-                                        fill="currentColor">
-                                        <path
-                                            d="M2.25 3a.75.75 0 000 1.5h2.071l3.297 10.16A2.25 2.25 0 009.75 16.5h8.496a2.25 2.25 0 002.147-1.592L21.75 7.5h-15.97l-.607-1.875A.75.75 0 004.5 5.25H2.25zM9.75 18a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm7.5 0a1.5 1.5 0 100 3 1.5 1.5 0 000-3z" />
-                                    </svg>
-                                </button>
-                            </li>
-                            <li><button class="w-full mt-2 btn btn-outline">Login</button></li>
-                            <li><button class="w-full mt-2 text-white btn btn-success">Register</button></li>
                         </ul>
                     </div>
-
-                    <!-- Logo -->
-                    <div class="hidden sm:justify-end sm:flex">
+                    <div class="hidden space-x-4 lg:flex navbar-end">
+                        <button class="btn btn-ghost btn-circle">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-6" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 7 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                        </button>
+                        <button class="btn btn-ghost btn-circle">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M2.25 3a.75.75 0 000 1.5h2.071l3.297 10.16A2.25 2.25 0 009.75 16.5h8.496a2.25 2.25 0 002.147-1.592L21.75 7.5h-15.97l-.607-1.875A.75.75 0 004.5 5.25H2.25zM9.75 18a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm7.5 0a1.5 1.5 0 100 3 1.5 1.5 0 000-3z" />
+                            </svg>
+                        </button>
+                        <button class="btn btn-outline">Login</button>
+                        <button class="w-32 font-bold text-white bg-green-800 btn hover:text-green-600">Register</button>
+                    </div>
+                    <div class="justify-end flex-1 ">
                         <img src="c2-assets/logo-header.png" alt="Logo" class="h-8">
                     </div>
-
+    
+    
                 </div>
-                <div class="hidden navbar-center lg:flex">
-                    <ul class="space-x-4 menu menu-horizontal">
-                        <li><a class="text-gray-700 hover:text-green-600">Product</a></li>
-                        <li><a class="text-gray-700 hover:text-green-600">Services</a></li>
-                        <li><a class="text-gray-700 hover:text-green-600">Contact Us</a></li>
-                    </ul>
-                </div>
-                <div class="hidden space-x-4 lg:flex navbar-end">
-                    <button class="btn btn-ghost btn-circle">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-6" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M21 21l-6-6m2-5a7 7 7 11-14 0 7 7 0 0114 0z" />
-                        </svg>
-                    </button>
-                    <button class="btn btn-ghost btn-circle">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
-                            <path
-                                d="M2.25 3a.75.75 0 000 1.5h2.071l3.297 10.16A2.25 2.25 0 009.75 16.5h8.496a2.25 2.25 0 002.147-1.592L21.75 7.5h-15.97l-.607-1.875A.75.75 0 004.5 5.25H2.25zM9.75 18a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm7.5 0a1.5 1.5 0 100 3 1.5 1.5 0 000-3z" />
-                        </svg>
-                    </button>
-                    <button class="btn btn-outline">Login</button>
-                    <button class="w-32 font-bold text-white bg-green-800 btn hover:text-green-600">Register</button>
-                </div>
-                <div class="justify-end flex-1 ">
-                    <img src="c2-assets/logo-header.png" alt="Logo" class="h-8">
-                </div>
-
-
-            </div>
-        </nav>
-
-        <!-- navbar -->
-    </div>
+            </nav>
+    
+            <!-- navbar -->
+        </div>
+    
     <!-- fresh part -->
     <div class="justify-center w-2/3 pt-10 mx-auto text-center">
 
-<!-- text animation -->
+        <!-- text animation -->
 
-
-
- <!-- text animation -->
-
-        
-        <h1 class="text-2xl font-bold text-center">Freshness <h class="text-green-600">You Can</h> <br>
-            <h class="text-green-600">Count</h> On, Prices You'll Love!
+        <h1 class="pb-5 text-2xl font-bold text-center pt-14 animate-textGlow">
+            Welcome to our Fresh Company Ltd-2025
         </h1>
+
+        <!-- text animation -->
+
+        <h1 class="text-2xl font-bold text-center ">Freshness <h class="text-green-600 ">You Can</h> <br>
+            <h class="text-green-600 ">Count</h> On, Prices You'll Love!
+        </h1>
+
     </div>
-    <div class="justify-center w-2/3 p-5 pt-5 mx-auto text-center text-gray-400">
-        <p>Shop your daily essentials at unbeatable prices. From fresh produce to pantry <br> staples, we’ve got you
-            covered
-            every day!</p>
+    <div class="justify-center w-2/3 p-1 pt-5 mx-auto text-center text-gray-400 ">
+        <p>Fresh food refers to unprocessed, natural ingredients like fruits, vegetables, dairy, <br>
+            and meats that retain their original nutrients, taste, and texture. It is healthier</p>
     </div>
     <div class="flex items-center justify-center w-2/3 mx-auto ">
         <img class="pt-10 p-:5 lg:w-3/5 " src="c2-assets/hero-vegetables.png" alt="">
     </div>
-
-    <main class="">
-        <!-- servies -->
+</div>
+    <main>
+        <!-- services -->
         <section class="pt-10 mx-auto lg:w-2/3">
             <h1 class="pl-2 text-3xl font-bold text-green-600">Services</h1>
             <div class="p-2 pt-5 lg:gap-5 lg:flex ">
-                <div class="mb-3 bg-green-100 shadow-xl card bg-base-100 lg:w-80">
+                <!-- class="mb-3 bg-green-100 border-4 shadow-xl card bg-base-100 lg:w-80 animate-glowingBorder" -->
+                <div class="mb-3 bg-green-100 border-4 shadow-xl card bg-base-100 lg:w-80 animate-glowingBorder">
                     <div class="flex items-center justify-center pt-5"> <!-- Ensure centering -->
                         <div class="flex items-center justify-center bg-white rounded-full h-36 w-36">
                             <img class="w-30" src="c2-assets/service.png" />
@@ -152,12 +197,12 @@
                     </div>
                     <div class="items-center text-center card-body">
                         <h2 class="font-bold card-title">24/7 Services</h2>
-                        <p class="text-gray-400">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                            tempor incididunt</p>
+                        <p class="text-gray-400">Our services are available 24/7, ensuring continuous support and
+                            convenience anytime you need.</p>
                     </div>
                 </div>
 
-                <div class="mb-3 bg-green-100 shadow-xl card bg-base-100 lg:w-80">
+                <div class="mb-3 bg-green-100 border-4 shadow-xl card bg-base-100 lg:w-80 animate-glowingBorder">
                     <div class="flex items-center justify-center pt-5"> <!-- Ensure centering -->
                         <div class="flex items-center justify-center bg-white rounded-full h-36 w-36">
                             <img class="w-30" src="c2-assets/delivery.png" />
@@ -165,11 +210,11 @@
                     </div>
                     <div class="items-center text-center card-body">
                         <h2 class="font-bold card-title">Fast Delivery</h2>
-                        <p class="text-gray-400">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                            tempor incididunt</p>
+                        <p class="text-gray-400">We ensure fast and reliable delivery, bringing your orders to you
+                            quickly and efficiently for maximum convenience.</p>
                     </div>
                 </div>
-                <div class="mb-3 bg-green-100 shadow-xl card bg-base-100 lg:w-80">
+                <div class="mb-3 bg-green-100 border-4 shadow-xl card bg-base-100 lg:w-80 animate-glowingBorder">
                     <div class="flex items-center justify-center pt-5">
                         <div class="flex items-center justify-center bg-white rounded-full h-36 w-36">
                             <img class="w-30" src="c2-assets/healthy.png" />
@@ -177,21 +222,22 @@
                     </div>
                     <div class="items-center text-center card-body">
                         <h2 class="font-bold card-title">Healthy Products</h2>
-                        <p class="text-gray-400">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                            tempor incididunt</p>
+                        <p class="text-gray-400">Healthy products are natural, nutrient-rich items that support overall
+                            well-being and promote a balanced lifestyle.</p>
                     </div>
                 </div>
             </div>
         </section>
         <!-- popular products -->
-        <section class="h-auto pt-10 pb-80 lg:pb-20 bg-red-50">
+        <section class="h-auto pt-10 pb-80 lg:pb-20 bg-[#EFEBE3]">
             <div class="pl-2 pr-2 mx-auto lg:w-2/3">
                 <h1 class="pb-5 pl-2 text-2xl font-bold text-green-600">Popular Products</h1>
                 <div class="items-center w-full mx-auto lg:flex">
                     <div class="relative justify-center p-10 mx-auto bg-green-500 rounded-xl h-96 lg:w-96 ">
-                        <div class="relative pt-10 pl-10">
+                        <div class="relative pt-2 ">
                             <h2 class="pb-5 text-2xl font-bold text-white">30% off</h2>
-                            <p class="pb-5">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Delectus, ea.</p>
+                            <p class="pb-5">Bananas are a nutritious fruit rich in potassium and fiber, while vegetables
+                                provide essential vitamins, minerals </p>
                             <div class="items-center justify-center pt-5 navbar-end">
                                 <button class="w-24 text-black bg-white lg:w-32 btn btn-active rounded-xl">Buy Now
                             </div>
@@ -200,20 +246,21 @@
                             <img class="h-48 w-60" src="c2-assets/vegetable-offer.png" alt="">
                         </div>
                     </div>
-                    <div class="grid justify-between grid-cols-2 gap-2 pt-10 lg:gap-3 lg:pl-2 lg:pt-0 sm:w-full lg:grid-cols-3 h-96">
+                    <div
+                        class="grid justify-between grid-cols-2 gap-2 pt-10 lg:gap-3 lg:pl-2 lg:pt-0 sm:w-full lg:grid-cols-3 h-96 ">
 
                         <div
                             class="flex items-center justify-between p-2 mx-auto bg-white lg:space-x-4 lg:h-28 lg:w-52 rounded-xl">
                             <!-- Image Section -->
                             <div class="flex items-center justify-center w-20 h-24 bg-red-50 rounded-xl">
-                                <img class="object-contain w-16 h-16" src="c2-assets/india-gate-mock-up.png" alt="">
+                                <img class="object-contain w-16 h-16" src="c2-assets/onion.png" alt="">
                             </div>
 
                             <!-- Text & Rating Section -->
                             <div class="flex flex-col justify-center justify-between">
                                 <div class="pl-2 rating">
                                     <input type="radio" name="rating-2" class="bg-orange-400 mask mask-star-2" />
-                                    <h2 class="font-bold pl-">4.5</h2>
+                                    <h2 class="font-bold pl-">5.5</h2>
                                 </div>
                                 <h2 class="pl-2 font-bold">Onion 1 KG</h2>
                                 <h2 class="pl-2 font-bold">$39.99</h2>
@@ -223,7 +270,7 @@
                             class="flex items-center justify-between p-2 mx-auto bg-white lg:space-x-4 lg:h-28 lg:w-52 rounded-xl">
                             <!-- Image Section -->
                             <div class="flex items-center justify-center w-20 h-24 bg-red-50 rounded-xl">
-                                <img class="object-contain w-16 h-16" src="c2-assets/india-gate-mock-up.png" alt="">
+                                <img class="object-contain w-16 h-16" src="c2-assets/begun.jpg" alt="">
                             </div>
 
                             <!-- Text & Rating Section -->
@@ -232,7 +279,7 @@
                                     <input type="radio" name="rating-2" class="bg-orange-400 mask mask-star-2" />
                                     <h2 class="font-bold pl-">4.5</h2>
                                 </div>
-                                <h2 class="pl-2 font-bold">Onion 1 KG</h2>
+                                <h2 class="pl-2 font-bold">Begun 1 KG</h2>
                                 <h2 class="pl-2 font-bold">$39.99</h2>
                             </div>
                         </div>
@@ -240,7 +287,7 @@
                             class="flex items-center justify-between p-2 mx-auto bg-white lg:space-x-4 lg:h-28 lg:w-52 rounded-xl">
                             <!-- Image Section -->
                             <div class="flex items-center justify-center w-20 h-24 bg-red-50 rounded-xl">
-                                <img class="object-contain w-16 h-16" src="c2-assets/india-gate-mock-up.png" alt="">
+                                <img class="object-contain w-16 h-16" src="c2-assets/morich.jpg" alt="">
                             </div>
 
                             <!-- Text & Rating Section -->
@@ -249,7 +296,7 @@
                                     <input type="radio" name="rating-2" class="bg-orange-400 mask mask-star-2" />
                                     <h2 class="font-bold pl-">4.5</h2>
                                 </div>
-                                <h2 class="pl-2 font-bold">Onion 1 KG</h2>
+                                <h2 class="pl-2 font-bold">Morich 1 KG</h2>
                                 <h2 class="pl-2 font-bold">$39.99</h2>
                             </div>
                         </div>
@@ -257,7 +304,7 @@
                             class="flex items-center justify-between p-2 mx-auto bg-white lg:space-x-4 lg:h-28 lg:w-52 rounded-xl">
                             <!-- Image Section -->
                             <div class="flex items-center justify-center w-20 h-24 bg-red-50 rounded-xl">
-                                <img class="object-contain w-16 h-16" src="c2-assets/india-gate-mock-up.png" alt="">
+                                <img class="object-contain w-16 h-16" src="c2-assets/peare.jpg" alt="">
                             </div>
 
                             <!-- Text & Rating Section -->
@@ -266,7 +313,7 @@
                                     <input type="radio" name="rating-2" class="bg-orange-400 mask mask-star-2" />
                                     <h2 class="font-bold pl-">4.5</h2>
                                 </div>
-                                <h2 class="pl-2 font-bold">Onion 1 KG</h2>
+                                <h2 class="pl-2 font-bold">Peara 1 KG</h2>
                                 <h2 class="pl-2 font-bold">$39.99</h2>
                             </div>
                         </div>
@@ -274,7 +321,7 @@
                             class="flex items-center justify-between p-2 mx-auto bg-white lg:space-x-4 lg:h-28 lg:w-52 rounded-xl">
                             <!-- Image Section -->
                             <div class="flex items-center justify-center w-20 h-24 bg-red-50 rounded-xl">
-                                <img class="object-contain w-16 h-16" src="c2-assets/india-gate-mock-up.png" alt="">
+                                <img class="object-contain w-16 h-16" src="c2-assets/cophi.jpg" alt="">
                             </div>
 
                             <!-- Text & Rating Section -->
@@ -283,7 +330,7 @@
                                     <input type="radio" name="rating-2" class="bg-orange-400 mask mask-star-2" />
                                     <h2 class="font-bold pl-">4.5</h2>
                                 </div>
-                                <h2 class="pl-2 font-bold">Onion 1 KG</h2>
+                                <h2 class="pl-2 font-bold">Cophi 1 KG</h2>
                                 <h2 class="pl-2 font-bold">$39.99</h2>
                             </div>
                         </div>
@@ -291,7 +338,7 @@
                             class="flex items-center justify-between p-2 mx-auto bg-white lg:space-x-4 lg:h-28 lg:w-52 rounded-xl">
                             <!-- Image Section -->
                             <div class="flex items-center justify-center w-20 h-24 bg-red-50 rounded-xl">
-                                <img class="object-contain w-16 h-16" src="c2-assets/india-gate-mock-up.png" alt="">
+                                <img class="object-contain w-16 h-16" src="c2-assets/osti.jpg" alt="">
                             </div>
 
                             <!-- Text & Rating Section -->
@@ -300,7 +347,7 @@
                                     <input type="radio" name="rating-2" class="bg-orange-400 mask mask-star-2" />
                                     <h2 class="font-bold pl-">4.5</h2>
                                 </div>
-                                <h2 class="pl-2 font-bold">Onion 1 KG</h2>
+                                <h2 class="pl-2 font-bold">Oshti 1 KG</h2>
                                 <h2 class="pl-2 font-bold">$39.99</h2>
                             </div>
                         </div>
@@ -308,7 +355,7 @@
                             class="flex items-center justify-between p-2 mx-auto bg-white lg:space-x-4 lg:h-28 lg:w-52 rounded-xl">
                             <!-- Image Section -->
                             <div class="flex items-center justify-center w-20 h-24 bg-red-50 rounded-xl">
-                                <img class="object-contain w-16 h-16" src="c2-assets/india-gate-mock-up.png" alt="">
+                                <img class="object-contain w-16 h-16" src="c2-assets/tomato.jpg" alt="">
                             </div>
 
                             <!-- Text & Rating Section -->
@@ -317,7 +364,7 @@
                                     <input type="radio" name="rating-2" class="bg-orange-400 mask mask-star-2" />
                                     <h2 class="font-bold pl-">4.5</h2>
                                 </div>
-                                <h2 class="pl-2 font-bold">Onion 1 KG</h2>
+                                <h2 class="pl-2 font-bold">Tomato 1 KG</h2>
                                 <h2 class="pl-2 font-bold">$39.99</h2>
                             </div>
                         </div>
@@ -325,7 +372,7 @@
                             class="flex items-center justify-between p-2 mx-auto bg-white lg:space-x-4 lg:h-28 lg:w-52 rounded-xl">
                             <!-- Image Section -->
                             <div class="flex items-center justify-center w-20 h-24 bg-red-50 rounded-xl">
-                                <img class="object-contain w-16 h-16" src="c2-assets/india-gate-mock-up.png" alt="">
+                                <img class="object-contain w-16 h-16" src="c2-assets/alu.jpg" alt="">
                             </div>
 
                             <!-- Text & Rating Section -->
@@ -334,7 +381,7 @@
                                     <input type="radio" name="rating-2" class="bg-orange-400 mask mask-star-2" />
                                     <h2 class="font-bold pl-">4.5</h2>
                                 </div>
-                                <h2 class="pl-2 font-bold">Onion 1 KG</h2>
+                                <h2 class="pl-2 font-bold">Alu 1 KG</h2>
                                 <h2 class="pl-2 font-bold">$39.99</h2>
                             </div>
                         </div>
@@ -342,7 +389,7 @@
                             class="flex items-center justify-between p-2 mx-auto bg-white lg:space-x-4 lg:h-28 lg:w-52 rounded-xl">
                             <!-- Image Section -->
                             <div class="flex items-center justify-center w-20 h-24 bg-red-50 rounded-xl">
-                                <img class="object-contain w-16 h-16" src="c2-assets/india-gate-mock-up.png" alt="">
+                                <img class="object-contain w-16 h-16" src="c2-assets/roshun.jpg" alt="">
                             </div>
 
                             <!-- Text & Rating Section -->
@@ -351,7 +398,7 @@
                                     <input type="radio" name="rating-2" class="bg-orange-400 mask mask-star-2" />
                                     <h2 class="font-bold pl-">4.5</h2>
                                 </div>
-                                <h2 class="pl-2 font-bold">Onion 1 KG</h2>
+                                <h2 class="pl-2 font-bold">Roshun 1 KG</h2>
                                 <h2 class="pl-2 font-bold">$39.99</h2>
                             </div>
                         </div>
@@ -359,7 +406,7 @@
                             class="flex items-center justify-between p-2 mx-auto bg-white lg:space-x-4 lg:h-28 lg:w-52 rounded-xl lg:hidden">
                             <!-- Image Section -->
                             <div class="flex items-center justify-center w-20 h-24 bg-red-50 rounded-xl">
-                                <img class="object-contain w-16 h-16" src="c2-assets/india-gate-mock-up.png" alt="">
+                                <img class="object-contain w-16 h-16" src="c2-assets/derosh.jpg" alt="">
                             </div>
 
                             <!-- Text & Rating Section -->
@@ -368,7 +415,7 @@
                                     <input type="radio" name="rating-2" class="bg-orange-400 mask mask-star-2" />
                                     <h2 class="font-bold pl-">4.5</h2>
                                 </div>
-                                <h2 class="pl-2 font-bold">Onion 1 KG</h2>
+                                <h2 class="pl-2 font-bold">Derosh 1 KG</h2>
                                 <h2 class="pl-2 font-bold">$39.99</h2>
                             </div>
                         </div>
@@ -385,7 +432,7 @@
         <section class="pt-10 pb-10 mx-auto mt-5 lg:w-2/3">
             <h1 class="pb-5 pl-2 text-2xl font-bold text-green-600">Arrival & Offers</h1>
             <div class="gap-5 pl-2 pr-2 lg:flex">
-                <div class="flex mb-5 lg:gap-10 rounded-xl bg-green-950">
+                <div class="flex mb-5 lg:gap-10 rounded-xl bg-[#115414]">
                     <div class="pt-10 pl-10">
                         <img src="c2-assets/dawat-logo.png" alt="">
 
@@ -399,7 +446,7 @@
                         <img class="h-48 lg:h-60" src="c2-assets/dawat-mock-up.png" alt="">
                     </div>
                 </div>
-                <div class="flex gap-10 mb-5 rounded-xl bg-green-950">
+                <div class="flex gap-10 mb-5 bg-[#102861] rounded-xl">
                     <div class="pt-5 pl-10">
                         <img class="w-20" src="c2-assets/india-gate-logo.png" alt="">
 
@@ -415,15 +462,61 @@
                 </div>
             </div>
         </section>
+        <!-- our quality -->
+        <section class="pt-5 pb-5 bg-red-50">
+            <h1 class="pl-2 mx-auto text-2xl font-bold text-green-600 lg:w-2/3">Our Products Quality</h1>
+            <div class="p-2 mx-auto lg:w-2/3 lg:gap-5 lg:flex ">
+                <div class="p-2 pt-5 lg:gap-5 lg:flex ">
+                    <div class="mb-3 bg-green-100 border-4 shadow-xl card bg-base-100 lg:w-80 animate-glowingBorder">
+                        <div class="flex items-center justify-center pt-5">
+                            <div class="flex items-center justify-center bg-white rounded-full h-36 w-36">
+                                <img class="rounded-full h-36 w-36" src="c2-assets/meat.jpg" />
+                            </div>
+                        </div>
+                        <div class="items-center text-center card-body">
+                            <h2 class="font-bold card-title">Fresh Meat</h2>
+                            <p class="animate-textGlow">Fresh meat is high-quality, recently sourced meat that retains
+                                its natural flavor and nutrients for optimal taste and health benefits.</p>
+                        </div>
+                    </div>
+
+                    <div class="mb-3 bg-green-100 border-4 shadow-xl card bg-base-100 lg:w-80 animate-glowingBorder">
+                        <div class="flex items-center justify-center pt-5">
+                            <div class="flex items-center justify-center bg-white rounded-full h-36 w-36">
+                                <img class="rounded-full h-36 w-36h-36 w-36" src="c2-assets/vegetable.jpg" />
+                            </div>
+                        </div>
+                        <div class="items-center text-center card-body">
+                            <h2 class="font-bold card-title">Fresh vegetables</h2>
+                            <p class="animate-textGlow">Fresh vegetables are locally sourced, nutrient-rich produce that
+                                retains its flavor, vitamins, and minerals for a healthy diet.</p>
+                        </div>
+                    </div>
+                    <div class="mb-3 bg-green-100 border-4 shadow-xl card bg-base-100 lg:w-80 animate-glowingBorder">
+                        <div class="flex items-center justify-center pt-5">
+                            <div class="flex items-center justify-center bg-white rounded-full h-36 w-36">
+                                <img class="rounded-full h-36 w-36" src="c2-assets/medicine.jpg" />
+                            </div>
+                        </div>
+                        <div class="items-center text-center card-body">
+                            <h2 class="font-bold card-title">Healthy Products Medicine</h2>
+                            <p class="animate-textGlow">Medicine refers to substances used to diagnose, treat, or
+                                prevent illnesses, promoting health and well-being.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
     </main>
-    <div class="relative mx-auto mt-60">
+    <div class="relative mx-auto mt-80 lg:mt-60">
         <footer class="relative h-auto pb-10 pl-5 bg-green-700 footer">
             <div class="justify-between lg:pt-80 pt-96 pb- lg:mx-auto lg:w-2/3 lg:flex">
                 <div class="text-white w-60">
                     <img src="c2-assets/logo-footer.png" alt="">
                     <p class="justify-center">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum excepturi neque repellendus quis
-                        voluptas ex?
+                        Nature's platter is a fresh assortment of wholesome fruits, vegetables, and natural foods,
+                        offering balanced nutrition.
                     </p>
                 </div>
                 <div class="pt-10 text-white lg:p-10 text-l">
@@ -463,7 +556,8 @@
             </div>
         </footer>
         <!-- get news -->
-        <section class="absolute mx-auto ml-2 mr-2 bg-gray-400 rounded-lg lg:mr-5 lg:ml-64 lg:w-2/3 z-1 lg:-top-48 -top-64">
+        <section
+            class="absolute mx-auto ml-2 mr-2 bg-[#EFEBE3] rounded-lg lg:mr-5 lg:ml-64 lg:w-2/3 z-1 lg:-top-48 -top-64">
             <div class=" lg:flex">
                 <div>
                     <img class="pt-5 pl-5 " src="c2-assets/vegetable-busket.png" alt="">
@@ -472,8 +566,8 @@
                     <h1 class="pb-3 text-3xl font-bold text-green-900">
                         Get Grocery News
                     </h1>
-                    <p class="pb-5 text-white lg:w-96 ">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab,
-                        illo!</p>
+                    <p class="pb-5 text-white lg:w-96 ">Stay updated with the latest grocery news, trends, and product
+                        releases .</p>
                     <input type="text" placeholder="Your Email"
                         class="w-72 lg:w-full input input-bordered input-secondary" />
                     <div class="items-center justify-center pt-5 navbar-end">
